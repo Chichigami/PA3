@@ -26,12 +26,11 @@ object MapUtilities {
   def loadIntersectionIDs(filename: String): mutable.Set[String] = {
     val file = XML.loadFile(filename)
     val nodeSet: mutable.Set[String] = mutable.Set()
-
     for {
-      nodeString <- file \\ "node" \@ "id"
+      nodeString <- file \\ "node"
+      nodeID = nodeString \@ "id"
     } yield {
-      println(nodeString)
-      nodeSet += nodeString
+      nodeSet += nodeID
     }
     nodeSet
   }
@@ -43,7 +42,7 @@ object MapUtilities {
 //    val nodeMap: mutable.Map[String, mutable.Set[String]] = mutable.Map()
 //
 //    for {
-//      wayID <- file \\ "way" \@ "id"
+//      wayID <- file \\ "way"
 //    } yield {
 //
 //    }

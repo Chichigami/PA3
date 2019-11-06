@@ -6,6 +6,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
 
 
 class MapUtilitiyTests extends FlatSpec with BeforeAndAfter {
+  MapUtilities.loadIntersectionIDs("C:\\Users\\Gary Feng\\IdeaProjects\\PA3\\data\\export.osm")
 
 }
 

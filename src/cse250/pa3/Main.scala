@@ -16,20 +16,21 @@ import cse250.objects.{StreetGraph, TaxEntry}
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val taxentryFilename = "data/2017-2018_Assessment_Roll-updated-small.csv"
-    val entries = TaxEntry.loadEntries(taxentryFilename, 25)
-    val mapXMLFile = "data/buffalo-map"
-    val intersectionNodeXMLFile = "data/export.osm"
-    val intersectionIDs = MapUtilities.loadIntersectionIDs(intersectionNodeXMLFile)
-    val nodeToStreetMapping = MapUtilities.loadMapInfo(mapXMLFile)
-    val streetGraph = MapUtilities.buildIntersectionGraph(intersectionIDs, nodeToStreetMapping)
-    println(s"${entries(1)} to\n${entries(2)}")
-    println(MapUtilities.computeFewestTurns(streetGraph, entries(1), entries(2)))
-    println(MapUtilities.computeFewestTurnsList(streetGraph, entries(1), entries(2)))
-
-    println(s"${entries(3)} to\n${entries(24)}")
-    println(MapUtilities.computeFewestTurns(streetGraph, entries(3), entries(24)))
-    println(MapUtilities.computeFewestTurnsList(streetGraph, entries(3), entries(24)))
+//    val taxentryFilename = "data/2017-2018_Assessment_Roll-updated-small.csv"
+//    val entries = TaxEntry.loadEntries(taxentryFilename, 25)
+//    val mapXMLFile = "data/buffalo-map"
+//    val intersectionNodeXMLFile = "data/export.osm"
+//    val intersectionIDs = MapUtilities.loadIntersectionIDs(intersectionNodeXMLFile)
+//    val nodeToStreetMapping = MapUtilities.loadMapInfo(mapXMLFile)
+//    val streetGraph = MapUtilities.buildIntersectionGraph(intersectionIDs, nodeToStreetMapping)
+//    println(s"${entries(1)} to\n${entries(2)}")
+//    println(MapUtilities.computeFewestTurns(streetGraph, entries(1), entries(2)))
+//    println(MapUtilities.computeFewestTurnsList(streetGraph, entries(1), entries(2)))
+//
+//    println(s"${entries(3)} to\n${entries(24)}")
+//    println(MapUtilities.computeFewestTurns(streetGraph, entries(3), entries(24)))
+//    println(MapUtilities.computeFewestTurnsList(streetGraph, entries(3), entries(24)))
+    println(MapUtilities.loadIntersectionIDs("C:\\Users\\Gary Feng\\IdeaProjects\\PA3\\data\\export.osm"))
   }
 }
 
