@@ -37,16 +37,23 @@ object MapUtilities {
 
 
   def loadMapInfo(filename: String): mutable.Map[String, mutable.Set[String]] = {
-//    val file = XML.loadFile(filename)
-//    val nodeSet: mutable.Set[String] = mutable.Set()
-//    val nodeMap: mutable.Map[String, mutable.Set[String]] = mutable.Map()
-//
-//    for {
-//      wayID <- file \\ "way"
-//    } yield {
-//
-//    }
-    ???
+    val file = XML.loadFile(filename)
+    val nodeMap: mutable.Map[String, mutable.Set[String]] = mutable.Map()
+    for {
+      nodeString <- file \\ "way"
+      streetTag <- nodeString \\ "tag"
+      tigerNameBase = streetTag \@ "k"
+      streetName = streetTag \@ "v"
+      ndChild <- nodeString \\ "nd"
+      refId = ndChild \@ "ref"
+    } yield if (tigerNameBase == "tiger:name_base"){
+      if(!nodeMap.contains(refId)){ //adding a new key value pair
+        nodeMap += (refId -> mutable.Set(streetName))
+      } else { //update value from key
+        nodeMap(refId) += streetName
+      }
+    }
+    nodeMap
   }
 
   def buildIntersectionGraph(intersectionIDs: mutable.Set[String],

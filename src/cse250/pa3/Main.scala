@@ -30,7 +30,7 @@ object Main {
 //    println(s"${entries(3)} to\n${entries(24)}")
 //    println(MapUtilities.computeFewestTurns(streetGraph, entries(3), entries(24)))
 //    println(MapUtilities.computeFewestTurnsList(streetGraph, entries(3), entries(24)))
-    println(MapUtilities.loadIntersectionIDs("C:\\Users\\Gary Feng\\IdeaProjects\\PA3\\data\\export.osm"))
+    println(MapUtilities.loadMapInfo("C:\\Users\\Gary Feng\\IdeaProjects\\PA3\\data\\buffalo-map"))
   }
 }
 
