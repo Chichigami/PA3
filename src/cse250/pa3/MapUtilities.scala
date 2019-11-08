@@ -61,13 +61,12 @@ object MapUtilities {
     val streetGraph = new StreetGraph
     for(i <- intersectionIDs){
       if(nodeToStreetMapping.contains(i)){
-        if(nodeToStreetMapping(i).size == 1){
+        if(nodeToStreetMapping(i).size != 1){
           streetGraph.insertVertex(nodeToStreetMapping(i).head)
-        } else {
-          val set = nodeToStreetMapping(i).toList
-          for (street <- 0 until set.size -1){ //A, B, C fix A to C
-            streetGraph.insertEdge(set(street), set(street+1))
-            streetGraph.insertEdge(set(street+1), set(street))
+          val set = nodeToStreetMapping(i).toList.combinations(2) //combination as a,b,c a,b a,c b,c and reversed
+          for (streetPairs <- set) {
+            streetGraph.insertEdge(streetPairs(0), streetPairs(1))
+            streetGraph.insertEdge(streetPairs(1), streetPairs(0))
           }
         }
       }
