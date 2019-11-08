@@ -48,9 +48,9 @@ object MapUtilities {
       refId = ndChild \@ "ref"
     } yield if (tigerNameBase == "tiger:name_base"){
       if(!nodeMap.contains(refId)){ //adding a new key value pair
-        nodeMap += (refId -> mutable.Set(streetName))
+        nodeMap += (refId -> mutable.Set(streetName.toUpperCase))
       } else { //update value from key
-        nodeMap(refId) += streetName
+        nodeMap(refId) += streetName.toUpperCase
       }
     }
     nodeMap
@@ -59,6 +59,19 @@ object MapUtilities {
   def buildIntersectionGraph(intersectionIDs: mutable.Set[String],
                              nodeToStreetMapping: mutable.Map[String, mutable.Set[String]]): StreetGraph = {
     val streetGraph = new StreetGraph
+    for(i <- intersectionIDs){
+      if(nodeToStreetMapping.contains(i)){
+        if(nodeToStreetMapping(i).size == 1){
+          streetGraph.insertVertex(nodeToStreetMapping(i).head)
+        } else {
+          val set = nodeToStreetMapping(i).toList
+          for (street <- 0 until set.size -1){ //A, B, C fix A to C
+            streetGraph.insertEdge(set(street), set(street+1))
+            streetGraph.insertEdge(set(street+1), set(street))
+          }
+        }
+      }
+    }
     streetGraph
   }
 
